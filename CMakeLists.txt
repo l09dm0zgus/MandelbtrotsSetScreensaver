@@ -8,5 +8,18 @@ set(CMAKE_CXX_STANDARD 17)
 
 include_directories(${GLEW_INCLUDE})
 
-add_executable(MandelbrotScreenSaver src/main.cpp src/messages/Messages.hpp src/shaders/ShaderFile.cpp src/shaders/ShaderFile.hpp src/shaders/ShaderProgram.cpp src/shaders/ShaderProgram.hpp)
+add_executable(MandelbrotScreenSaver
+        src/main.cpp
+        src/messages/Messages.hpp
+        src/shaders/ShaderFile.cpp
+        src/shaders/ShaderFile.hpp
+        src/shaders/ShaderProgram.cpp
+        src/shaders/ShaderProgram.hpp
+        src/buffers/VertexArrayObject.h
+        src/buffers/VertexArrayObject.cpp
+        src/buffers/VertexAttributes.cpp
+        src/buffers/VertexAttributes.h
+        src/buffers/VertexBufferObject.h
+        src/buffers/VertexBufferObject.cpp
+        src/buffers/VertexAttributes.h)
 target_link_libraries(MandelbrotScreenSaver libglew_static glfw)
