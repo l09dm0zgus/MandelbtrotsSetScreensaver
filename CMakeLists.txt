@@ -3,4 +3,4 @@ project(MandelbrotScreenSaver)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(MandelbrotScreenSaver main.cpp)
+add_executable(MandelbrotScreenSaver src/main.cpp src/messages/Messages.hpp)
