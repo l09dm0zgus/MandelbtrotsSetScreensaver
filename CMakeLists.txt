@@ -15,11 +15,11 @@ add_executable(MandelbrotScreenSaver
         src/shaders/ShaderFile.hpp
         src/shaders/ShaderProgram.cpp
         src/shaders/ShaderProgram.hpp
-        src/buffers/VertexArrayObject.h
+        src/buffers/VertexArrayObject.hpp
         src/buffers/VertexArrayObject.cpp
         src/buffers/VertexAttributes.cpp
-        src/buffers/VertexAttributes.h
-        src/buffers/VertexBufferObject.h
+        src/buffers/VertexAttributes.hpp
+        src/buffers/VertexBufferObject.hpp
         src/buffers/VertexBufferObject.cpp
-        src/buffers/VertexAttributes.h)
+        src/buffers/VertexAttributes.hpp src/fractals/Mandelbrot.cpp src/fractals/Mandelbrot.hpp)
 target_link_libraries(MandelbrotScreenSaver libglew_static glfw)
