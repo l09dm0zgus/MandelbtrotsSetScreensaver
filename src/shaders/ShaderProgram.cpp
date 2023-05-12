@@ -69,7 +69,6 @@ void ShaderProgram::showLinkerLog() const noexcept
     {
         glGetProgramInfoLog(shaderProgram, 512, nullptr, infoLog);
         showErrorMessage("Error:Failed to link shader.",infoLog);
-
     }
 }
 
@@ -78,8 +77,19 @@ void ShaderProgram::use() const noexcept
     glUseProgram(shaderProgram);
 }
 
-void ShaderProgram::setIntUniform(const std::string &uniformVariable, int value) const
+void ShaderProgram::setMatrixUniform(const std::string &uniformName, const mat4<float> &matrix) const noexcept
 {
-    glUniform1i(glGetUniformLocation(shaderProgram, uniformVariable.c_str()), value);
+    glUniformMatrix4fv(glGetUniformLocation(shaderProgram,uniformName.c_str()),1, GL_FALSE, toPointer<float>(matrix).data);
 }
+
+void ShaderProgram::setDoubleUniform(const std::string &uniformName, double value) const noexcept
+{
+    glUniform1d(glGetUniformLocation(shaderProgram,uniformName.c_str()),value);
+}
+
+void ShaderProgram::setIntegerUniform(const std::string &uniformName, int value) const noexcept
+{
+    glUniform1i(glGetUniformLocation(shaderProgram,uniformName.c_str()),value);
+}
+
 
