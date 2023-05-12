@@ -4,17 +4,19 @@
 
 #ifndef MANDELBROTSCREENSAVER_MESSAGES_HPP
 #define MANDELBROTSCREENSAVER_MESSAGES_HPP
-
+#include <string>
 #ifdef __WIN32
 #include <windows.h>
 #else
 #include <iostream>
 #endif
 
-inline void showErrorMessage(const char* errorMessage)
+
+
+inline void showErrorMessage(const char *caption = "ERROR" ,const char* errorMessage = "")
 {
 #ifdef __WIN32
-    MessageBoxA(nullptr,errorMessage, "ERROR" ,MB_ICONERROR|MB_TASKMODAL);
+    MessageBoxA(nullptr,errorMessage, caption ,MB_ICONERROR|MB_TASKMODAL);
 #else
     //TODO show error message in GUI on linux/mac
     std::cout << "Error:" << errorMessage << "\n";
@@ -30,5 +32,8 @@ inline void showInfoMessage(const char* infoMessage)
     std::cout << "Info:" << infoMessage << "\n";
 #endif
 }
-
+inline void glfwErrorCallback(int error,const char* description)
+{
+    showErrorMessage("Error",description);
+}
 #endif //MANDELBROTSCREENSAVER_MESSAGES_HPP
