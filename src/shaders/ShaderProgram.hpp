@@ -5,7 +5,6 @@
 #ifndef MANDELBROTSCREENSAVER_SHADERPROGRAM_HPP
 #define MANDELBROTSCREENSAVER_SHADERPROGRAM_HPP
 #include "ShaderFile.hpp"
-#include "../Math.hpp"
 
 class ShaderProgram
 {
@@ -13,7 +12,6 @@ public:
     ShaderProgram(const std::string &vertexShaderPath,const std::string &fragmentShaderPath);
     ~ShaderProgram();
     void use() const noexcept;
-    void setMatrixUniform(const std::string &uniformName,const mat4<float> &matrix) const noexcept;
     void setDoubleUniform(const std::string &uniformName,double value)  const noexcept;
     void setIntegerUniform(const std::string &uniformName,int value)const noexcept;
 private:

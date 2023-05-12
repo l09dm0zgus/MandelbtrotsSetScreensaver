@@ -77,10 +77,6 @@ void ShaderProgram::use() const noexcept
     glUseProgram(shaderProgram);
 }
 
-void ShaderProgram::setMatrixUniform(const std::string &uniformName, const mat4<float> &matrix) const noexcept
-{
-    glUniformMatrix4fv(glGetUniformLocation(shaderProgram,uniformName.c_str()),1, GL_FALSE, toPointer<float>(matrix).data);
-}
 
 void ShaderProgram::setDoubleUniform(const std::string &uniformName, double value) const noexcept
 {
