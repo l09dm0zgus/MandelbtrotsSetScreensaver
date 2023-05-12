@@ -5,13 +5,14 @@
 #ifndef MANDELBROTSCREENSAVER_VERTEXBUFFEROBJECT_HPP
 #define MANDELBROTSCREENSAVER_VERTEXBUFFEROBJECT_HPP
 #include <vector>
+#include "RectangleData.hpp"
 
 class VertexBufferObject
 {
 public:
     VertexBufferObject();
     ~VertexBufferObject();
-    void bind(const std::vector<int> &vertices);
+    void bind(const RectangleData &data) const;
     void unbind();
 private:
     unsigned int object{0};

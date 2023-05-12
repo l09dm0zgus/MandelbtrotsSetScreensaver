@@ -21,5 +21,5 @@ add_executable(MandelbrotScreenSaver
         src/buffers/VertexAttributes.hpp
         src/buffers/VertexBufferObject.hpp
         src/buffers/VertexBufferObject.cpp
-        src/buffers/VertexAttributes.hpp src/fractals/Mandelbrot.cpp src/fractals/Mandelbrot.hpp)
+        src/buffers/VertexAttributes.hpp src/fractals/Mandelbrot.cpp src/fractals/Mandelbrot.hpp src/Math.hpp src/buffers/ElementsBufferObject.cpp src/buffers/ElementsBufferObject.hpp src/buffers/RectangleData.hpp)
 target_link_libraries(MandelbrotScreenSaver libglew_static glfw)
