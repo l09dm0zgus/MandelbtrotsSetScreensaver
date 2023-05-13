@@ -15,7 +15,8 @@
 
 inline void showErrorMessage(const char *caption = "ERROR" ,const char* errorMessage = "")
 {
-#ifdef __WIN32
+
+#if defined(WIN32) || defined(WIN64)
     MessageBoxA(nullptr,errorMessage, caption ,MB_ICONERROR|MB_TASKMODAL);
 #else
     //TODO show error message in GUI on linux/mac
@@ -25,7 +26,8 @@ inline void showErrorMessage(const char *caption = "ERROR" ,const char* errorMes
 
 inline void showInfoMessage(const char* infoMessage)
 {
-#ifdef __WIN32
+
+#if defined(WIN32) || defined(WIN64)
     MessageBoxA(nullptr,infoMessage, "INFO" ,MB_ICONINFORMATION|MB_TASKMODAL);
 #else
     //TODO show error message in GUI on linux/mac
