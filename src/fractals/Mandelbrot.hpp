@@ -17,14 +17,15 @@ using namespace std::chrono_literals;
 class Mandelbrot
 {
 public:
-    Mandelbrot(int windowWidth,int windowHeigh);
+    Mandelbrot(int windowWidth,int windowHeight);
+    void resize(int width, int height);
     void draw() noexcept;
 private:
     void generateRandomScalePosition();
     double startScale = 1.0;
     double scale = startScale;
     double scaleFactor = 0.0001;
-    double minimalScaleLimit = 0.000001;
+    double minimalScaleLimit = 0.0000000001;
     RectangleData rectangleData;
     VertexBufferObject VBO;
     VertexAttributes attributes;
@@ -37,8 +38,8 @@ private:
     std::atomic<int> randomX;
     std::atomic<int> randomY;
     std::atomic<bool> isGenerating{true};
-    int widowWidth;
-    int windowHeight;
+    std::atomic<int>  widowWidth;
+    std::atomic<int>  windowHeight;
 };
 
 

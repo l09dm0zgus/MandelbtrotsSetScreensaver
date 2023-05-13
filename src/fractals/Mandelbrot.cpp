@@ -58,3 +58,9 @@ void Mandelbrot::generateRandomScalePosition()
         std::this_thread::sleep_for(threadSleepTime);
     }
 }
+
+void Mandelbrot::resize(int width, int height)
+{
+    this->widowWidth = width;
+    this->windowHeight = height;
+}
