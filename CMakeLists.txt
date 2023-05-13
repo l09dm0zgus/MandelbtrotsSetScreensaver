@@ -34,4 +34,16 @@ add_executable(MandelbrotScreenSaver
         src/window/Window.hpp
         src/application/Application.cpp
         src/application/Application.hpp)
+if (WIN32)
+    set_target_properties(MandelbrotScreenSaver PROPERTIES
+            OUTPUT_NAME "MandelbrotScreenSaver"
+            SUFFIX ".scr")
+    target_link_options(MandelbrotScreenSaver PRIVATE -mwindows)
+endif (WIN32)
+if (WIN64)
+    set_target_properties(MandelbrotScreenSaver PROPERTIES
+            OUTPUT_NAME "MandelbrotScreenSaver"
+            SUFFIX ".scr")
+    target_link_options(MandelbrotScreenSaver PRIVATE -mwindows)
+endif (WIN64)
 target_link_libraries(MandelbrotScreenSaver libglew_static glfw)
