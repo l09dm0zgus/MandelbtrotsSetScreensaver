@@ -7,7 +7,12 @@ set(GLEW_INCLUDE submodules/glew-cmake/include)
 set(CMAKE_CXX_STANDARD 17)
 
 include_directories(${GLEW_INCLUDE})
-
+if (WIN32)
+    add_compile_definitions(WIN32)
+endif (WIN32)
+if (WIN64)
+    add_compile_definitions(WIN32)
+endif (WIN64)
 add_executable(MandelbrotScreenSaver
         src/main.cpp
         src/messages/Messages.hpp

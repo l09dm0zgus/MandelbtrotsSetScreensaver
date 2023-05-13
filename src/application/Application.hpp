@@ -10,8 +10,11 @@
 class Application
 {
 private:
-    std::unique_ptr<Window> window;
-    std::unique_ptr<Mandelbrot> mandelbrot;
+    std::unique_ptr<Window> window{nullptr};
+    std::unique_ptr<Mandelbrot> mandelbrot{nullptr};
+#if defined(WIN32) || defined(WIN64)
+    void parseArguments(int argc, char *argv[]);
+#endif
 public:
     explicit Application(int argc, char *argv[]);
     void run();

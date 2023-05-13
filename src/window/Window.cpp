@@ -14,17 +14,50 @@ Window::Window(bool isFullscreen)
     //setFullscreen(isFullscreen);
 }
 #if defined(WIN32) || defined(WIN64)
-Window::Window(HWND descriptor)
-{   initGLFW();
-    initGLFWWindow();
-    window = glfwAttachWin32Window(descriptor, window);
+Window::Window(bool isFullscreen ,HWND descriptor)
+{
+    PIXELFORMATDESCRIPTOR pfd =
+            {
+                    sizeof(PIXELFORMATDESCRIPTOR),
+                    1,
+                    PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER,    //Flags
+                    PFD_TYPE_RGBA,        // The kind of framebuffer. RGBA or palette.
+                    32,                   // Colordepth of the framebuffer.
+                    0, 0, 0, 0, 0, 0,
+                    0,
+                    0,
+                    0,
+                    0, 0, 0, 0,
+                    24,                   // Number of bits for the depthbuffer
+                    8,                    // Number of bits for the stencilbuffer
+                    0,                    // Number of Aux buffers in the framebuffer.
+                    PFD_MAIN_PLANE,
+                    0,
+                    0, 0, 0
+            };
+
+    HDC windowHandleToDeviceContext = GetDC(descriptor);
+
+    int  pixelFormat;
+    pixelFormat = ChoosePixelFormat(windowHandleToDeviceContext, &pfd);
+    SetPixelFormat(windowHandleToDeviceContext,pixelFormat, &pfd);
+
+    openGLRenderingContext = wglCreateContext(windowHandleToDeviceContext);
+    wglMakeCurrent (windowHandleToDeviceContext, openGLRenderingContext);
     initGLEW();
 }
 #endif
 Window::~Window()
 {
+#if defined(WIN32) || defined(WIN64)
+    if(isPreviewMode)
+    {
+        wglDeleteContext(openGLRenderingContext);
+    }
+#endif
     glfwDestroyWindow(window);
     glfwTerminate();
+
 }
 
 void Window::keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods)

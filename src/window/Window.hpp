@@ -7,10 +7,6 @@
 #include <GL/glew.h>
 #if defined(WIN32) || defined(WIN64)
 #include <Windows.h>
-#define GLFW_EXPOSE_NATIVE_WIN32
-#define GLFW_EXPOSE_NATIVE_WGL
-#define GLFW_NATIVE_INCLUDE_NONE
-#include <GLFW/glfw3native.h>
 #endif
 #include <GLFW/glfw3.h>
 
@@ -19,7 +15,7 @@ class Window
 public:
     explicit Window(bool isFullscreen = false);
 #if defined(WIN32) || defined(WIN64)
-    explicit Window(HWND descriptowWindow);
+    explicit Window(bool isFullscreen ,HWND descriptowWindow);
 #endif
     int getWidth() const noexcept;
     int getHeight() const noexcept;
@@ -29,6 +25,10 @@ public:
     bool isShouldClose();
     ~Window();
 private:
+#if defined(WIN32) || defined(WIN64)
+    HGLRC openGLRenderingContext;
+    bool isPreviewMode{false};
+#endif
     void initGLFW();
     void initGLFWWindow();
     void initGLEW();
