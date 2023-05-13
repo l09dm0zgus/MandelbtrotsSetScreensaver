@@ -44,6 +44,7 @@ Window::Window(bool isFullscreen ,HWND descriptor)
 
     openGLRenderingContext = wglCreateContext(windowHandleToDeviceContext);
     wglMakeCurrent (windowHandleToDeviceContext, openGLRenderingContext);
+    isPreviewMode = true;
     initGLEW();
 }
 #endif

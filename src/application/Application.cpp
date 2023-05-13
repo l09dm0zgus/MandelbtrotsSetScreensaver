@@ -28,7 +28,7 @@ void Application::run()
 #if defined(WIN32) || defined(WIN64)
 void Application::parseArguments(int argc, char *argv[])
 {
-    if(argc > 2)
+    if(argc >= 2)
     {
         if((strcmp(argv[1],"\\c")  && strcmp(argv[1],"\\C") && strcmp(argv[1],"/c") && strcmp(argv[1],"/C")) == 0)
         {
@@ -47,7 +47,7 @@ void Application::parseArguments(int argc, char *argv[])
     else
     {
         window = std::make_unique<Window>(false);
-        mandelbrot = std::make_unique<Mandelbrot>(window->getWidth(),window->getHeight());
     }
+    mandelbrot = std::make_unique<Mandelbrot>(window->getWidth(),window->getHeight());
 }
 #endif
