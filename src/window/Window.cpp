@@ -142,7 +142,7 @@ void Window::initGLFWWindow()
     }
     glfwMakeContextCurrent(window);
     glfwSetKeyCallback(window,Window::keyCallback);
-    glfwCall
+    glfwSetWindowSizeCallback(window,Window::resizeCallback);
 }
 
 void Window::initGLEW()
