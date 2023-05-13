@@ -17,7 +17,7 @@ using namespace std::chrono_literals;
 class Mandelbrot
 {
 public:
-    Mandelbrot(int windowWidth,int windowHeight,const std::string &vertexShaderPath , const std::string &fragmentShaderPath);
+    Mandelbrot(int windowWidth,int windowHeigh);
     void draw() noexcept;
 private:
     void generateRandomScalePosition();

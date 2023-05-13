@@ -4,19 +4,16 @@
 
 #ifndef MANDELBROTSCREENSAVER_SHADERPROGRAM_HPP
 #define MANDELBROTSCREENSAVER_SHADERPROGRAM_HPP
-#include "ShaderFile.hpp"
-
+#include <string>
 class ShaderProgram
 {
 public:
-    ShaderProgram(const std::string &vertexShaderPath,const std::string &fragmentShaderPath);
+    ShaderProgram(const char * vertexShaderFile,const char *fragmentShaderPath);
     ~ShaderProgram();
     void use() const noexcept;
     void setDoubleUniform(const std::string &uniformName,double value)  const noexcept;
     void setIntegerUniform(const std::string &uniformName,int value)const noexcept;
 private:
-    ShaderFile vertexShaderFile;
-    ShaderFile fragmentShaderFile;
     unsigned int vertexShader{0};
     unsigned int fragmentShader{0};
     unsigned int shaderProgram{0};

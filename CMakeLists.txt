@@ -11,8 +11,6 @@ include_directories(${GLEW_INCLUDE})
 add_executable(MandelbrotScreenSaver
         src/main.cpp
         src/messages/Messages.hpp
-        src/shaders/ShaderFile.cpp
-        src/shaders/ShaderFile.hpp
         src/shaders/ShaderProgram.cpp
         src/shaders/ShaderProgram.hpp
         src/buffers/VertexArrayObject.hpp
@@ -21,5 +19,14 @@ add_executable(MandelbrotScreenSaver
         src/buffers/VertexAttributes.hpp
         src/buffers/VertexBufferObject.hpp
         src/buffers/VertexBufferObject.cpp
-        src/buffers/VertexAttributes.hpp src/fractals/Mandelbrot.cpp src/fractals/Mandelbrot.hpp src/Math.hpp src/buffers/ElementsBufferObject.cpp src/buffers/ElementsBufferObject.hpp src/buffers/RectangleData.hpp)
+        src/buffers/VertexAttributes.hpp
+        src/fractals/Mandelbrot.cpp
+        src/fractals/Mandelbrot.hpp
+        src/buffers/ElementsBufferObject.cpp
+        src/buffers/ElementsBufferObject.hpp
+        src/buffers/RectangleData.hpp
+        src/window/Window.cpp
+        src/window/Window.hpp
+        src/application/Application.cpp
+        src/application/Application.hpp)
 target_link_libraries(MandelbrotScreenSaver libglew_static glfw)

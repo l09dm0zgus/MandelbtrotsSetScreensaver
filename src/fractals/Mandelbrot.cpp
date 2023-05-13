@@ -6,9 +6,16 @@
 #include "GL/glew.h"
 #include <random>
 #include <thread>
-Mandelbrot::Mandelbrot(int windowWidth, int windowHeight, const std::string &vertexShaderPath,const std::string &fragmentShaderPath):windowHeight(windowHeight),widowWidth(windowWidth)
+Mandelbrot::Mandelbrot(int windowWidth, int windowHeight):windowHeight(windowHeight),widowWidth(windowWidth)
 {
-    shaderProgram = std::make_unique<ShaderProgram>(vertexShaderPath,fragmentShaderPath);
+    constexpr auto vertexShader =
+    #include "../shaders/MandelbrotVertex.glsl"
+            ;
+    constexpr auto fragmentShader =
+    #include "../shaders/MandelbrotFragment.glsl"
+            ;
+
+    shaderProgram = std::make_unique<ShaderProgram>(vertexShader,fragmentShader);
     VAO.bind();
     VBO.bind(rectangleData);
     EBO.bind(rectangleData);

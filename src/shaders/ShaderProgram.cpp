@@ -6,10 +6,8 @@
 #include "../messages/Messages.hpp"
 #include <GL/glew.h>
 
-ShaderProgram::ShaderProgram(const std::string &vertexShaderPath,const std::string &fragmentShaderPath)
+ShaderProgram::ShaderProgram(const char *vertexShaderText,const char *fragmentShaderText): fragmentShaderText(const_cast<char *>(fragmentShaderText)), vertexShaderText(const_cast<char *>(vertexShaderText))
 {
-    vertexShaderFile.read(vertexShaderPath);
-    fragmentShaderFile.read(fragmentShaderPath);
     compileVertexShader();
     compileFragmentShader();
     linkShaders();
@@ -17,7 +15,6 @@ ShaderProgram::ShaderProgram(const std::string &vertexShaderPath,const std::stri
 
 void ShaderProgram::compileVertexShader()
 {
-    vertexShaderText = const_cast<char *>(vertexShaderFile.getContent());
     vertexShader = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertexShader, 1,&vertexShaderText, nullptr);
     glCompileShader(vertexShader);
@@ -38,7 +35,6 @@ inline void ShaderProgram::showCompilerLog(unsigned int shader) const noexcept
 
 inline void ShaderProgram::compileFragmentShader()
 {
-    fragmentShaderText = const_cast<char *>(fragmentShaderFile.getContent());
     fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(fragmentShader, 1,&fragmentShaderText, nullptr);
     glCompileShader(fragmentShader);
