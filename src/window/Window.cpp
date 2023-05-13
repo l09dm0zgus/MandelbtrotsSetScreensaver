@@ -11,7 +11,7 @@ Window::Window(bool isFullscreen)
     initGLFW();
     initGLFWWindow();
     initGLEW();
-    //setFullscreen(isFullscreen);
+    setFullscreen(isFullscreen);
 }
 #if defined(WIN32) || defined(WIN64)
 Window::Window(bool isFullscreen ,HWND descriptor)
@@ -103,7 +103,7 @@ int Window::getHeight() const noexcept
 
 void Window::setFullscreen(bool isFullscreen)
 {
-    auto monitor = glfwGetWindowMonitor(window);
+    auto monitor = glfwGetPrimaryMonitor();
     auto mode = glfwGetVideoMode(monitor);
     if(isFullscreen)
     {
@@ -112,7 +112,7 @@ void Window::setFullscreen(bool isFullscreen)
     }
     else
     {
-        glfwSetWindowMonitor(window, nullptr,0,0,width,height,0);
+        glfwSetWindowMonitor(window, nullptr,100,100,width,height,0);
         glViewport(0,0,width,height);
 
     }
@@ -142,7 +142,7 @@ void Window::initGLFWWindow()
     }
     glfwMakeContextCurrent(window);
     glfwSetKeyCallback(window,Window::keyCallback);
-
+    glfwCall
 }
 
 void Window::initGLEW()
