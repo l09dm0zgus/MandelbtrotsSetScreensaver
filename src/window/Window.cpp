@@ -45,7 +45,6 @@ Window::Window(bool isFullscreen ,HWND descriptor)
     openGLRenderingContext = wglCreateContext(windowHandleToDeviceContext);
     wglMakeCurrent (windowHandleToDeviceContext, openGLRenderingContext);
     isPreviewMode = true;
-    initGLEW();
 }
 #endif
 Window::~Window()
@@ -86,26 +85,26 @@ bool Window::isShouldClose()
     return glfwWindowShouldClose(window);
 }
 
-void Window::resizeCallback(GLFWwindow *window, int width, int height)
+void Window::resizeCallback(GLFWwindow *window, int windowWidth, int windowHeight)
 {
-    glViewport(0,0, width,height);
-    glfwGetWindowSize(window, &width, &height);
+    glViewport(0,0, windowWidth,windowHeight);
 }
 
 int Window::getWidth() const noexcept
 {
-    return width;
+    return mode->width;
 }
 
 int Window::getHeight() const noexcept
 {
-    return height;
+
+    return mode->height;
 }
 
 void Window::setFullscreen(bool isFullscreen)
 {
-    auto monitor = glfwGetPrimaryMonitor();
-    auto mode = glfwGetVideoMode(monitor);
+    height = mode->height;
+    width  = mode->width;
     if(isFullscreen)
     {
         glfwSetWindowMonitor(window, monitor, 0, 0, mode->width, mode->height, mode->refreshRate);
@@ -144,6 +143,8 @@ void Window::initGLFWWindow()
     glfwMakeContextCurrent(window);
     glfwSetKeyCallback(window,Window::keyCallback);
     glfwSetWindowSizeCallback(window,Window::resizeCallback);
+    monitor = glfwGetPrimaryMonitor();
+    mode = glfwGetVideoMode(monitor);
 }
 
 void Window::initGLEW()

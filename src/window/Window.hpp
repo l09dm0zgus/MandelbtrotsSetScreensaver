@@ -33,9 +33,12 @@ private:
     void initGLFWWindow();
     void initGLEW();
     static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
-    static void resizeCallback(GLFWwindow* window, int width, int height);
-    int width{800}, height{600};
+    static void resizeCallback(GLFWwindow* window, int windowWidth, int windowHeight);
+    int width;
+    int height;
     GLFWwindow *window;
+    GLFWmonitor *monitor;
+    const GLFWvidmode *mode;
 };
 
 

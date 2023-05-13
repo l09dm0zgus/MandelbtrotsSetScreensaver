@@ -21,6 +21,7 @@ void Application::run()
     while (!window->isShouldClose())
     {
         window->clear();
+        mandelbrot->resize(window->getWidth(),window->getHeight());
         mandelbrot->draw();
         window->swapBuffers();
     }
