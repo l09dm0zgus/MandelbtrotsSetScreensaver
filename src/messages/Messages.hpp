@@ -5,7 +5,7 @@
 #ifndef MANDELBROTSCREENSAVER_MESSAGES_HPP
 #define MANDELBROTSCREENSAVER_MESSAGES_HPP
 #include <string>
-#ifdef __WIN32
+#if defined(WIN32) || defined(WIN64)
 #include <windows.h>
 #else
 #include <iostream>
