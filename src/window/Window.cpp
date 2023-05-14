@@ -62,10 +62,7 @@ Window::~Window()
 
 void Window::keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods)
 {
-    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-    {
-        glfwSetWindowShouldClose(window, GLFW_TRUE);
-    }
+    glfwSetWindowShouldClose(window, GLFW_TRUE);
 }
 
 void Window::swapBuffers()
@@ -143,6 +140,8 @@ void Window::initGLFWWindow()
     glfwMakeContextCurrent(window);
     glfwSetKeyCallback(window,Window::keyCallback);
     glfwSetWindowSizeCallback(window,Window::resizeCallback);
+    glfwSetMouseButtonCallback(window, Window::mouseButtonCallback);
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
     monitor = glfwGetPrimaryMonitor();
     mode = glfwGetVideoMode(monitor);
 }
@@ -154,4 +153,14 @@ void Window::initGLEW()
         showErrorMessage("ERROR","Failed to initialize GLEW\n");
         exit(-1);
     }
+}
+
+void Window::cursorCallback(GLFWwindow *window, double xpos, double ypos)
+{
+    glfwSetWindowShouldClose(window, GLFW_TRUE);
+}
+
+void Window::mouseButtonCallback(GLFWwindow *window, int button, int action, int mods)
+{
+    glfwSetWindowShouldClose(window, GLFW_TRUE);
 }

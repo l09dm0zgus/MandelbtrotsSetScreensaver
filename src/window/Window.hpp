@@ -34,6 +34,8 @@ private:
     void initGLEW();
     static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
     static void resizeCallback(GLFWwindow* window, int windowWidth, int windowHeight);
+    static void cursorCallback(GLFWwindow* window, double xpos, double ypos);
+    static void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
     int width;
     int height;
     GLFWwindow *window;
